@@ -14,10 +14,6 @@ namespace Shoe.Api.Data
 
         }
         public DbSet<Shoes> Shoes { get; set; }
-         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=.;Database=ShoeShopApi;Intergrated Security=True");
-            base.OnConfiguring(optionsBuilder);
-        }
+        
     }
 }
