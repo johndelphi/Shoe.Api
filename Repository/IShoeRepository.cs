@@ -9,6 +9,8 @@ namespace Shoe.Api.Repository
         Task<List<ShoeModel>> GetShoesByIdAsync();
         Task<ShoeModel> GetShoeByIdAsync(int shoeId);
         Task<int> AddShoeAsync(ShoeModel shoeModel);
+        Task UpdateShoe(int shoeId, ShoeModel shoeModel);
+       
 
     }
 }

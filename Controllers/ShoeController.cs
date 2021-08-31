@@ -37,12 +37,19 @@ namespace Shoe.Api.Controllers
             return Ok(shoe);
         }
         [HttpPost("")]
-        public async Task<IActionResult> AddNewShoe([ FromBody] ShoeModel shoeModel)
+        public async Task<IActionResult> AddNewShoe([FromBody] ShoeModel shoeModel)
         {
             var id = await _shoeRepository.AddShoeAsync(shoeModel);
             return CreatedAtAction(nameof(GetShoeById), new { id = id, Controller = "Shoes" }, id);
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateShoe([FromBody] ShoeModel shoeModel, [FromRoute] int id)
+        {
+            await _shoeRepository.UpdateShoe(id, shoeModel);
+            return Ok();
 
+
+        }
     }
 }
 

@@ -56,6 +56,22 @@ namespace Shoe.Api.Repository
 
         }
 
-     
+
+        public async Task UpdateShoe(int shoeId, ShoeModel shoeModel)
+        {
+          
+          var shoe = await context.Shoes.FindAsync(shoeId);
+            if (shoe !=null)
+            {
+                shoe.Name = shoeModel.Name;
+                shoe.Description = shoeModel.Description;
+
+                await context.SaveChangesAsync();
+            }
+
+          
+        }
+
+       
     }
 }
