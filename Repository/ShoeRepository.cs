@@ -25,6 +25,7 @@ namespace Shoe.Api.Repository
                 Colour=x.Colour,
                 Description=x.Description,
                 ShoeCount=x.ShoeCount
+
             }).ToListAsync();
             return records;
         }
@@ -43,10 +44,12 @@ namespace Shoe.Api.Repository
         public async Task<int> AddShoeAsync(ShoeModel shoeModel)
         {
             var shoe = new Shoes()
-            { Name= shoeModel.Name,
+            {
+             Name= shoeModel.Name,
              Colour=shoeModel.Colour,
              Description=shoeModel.Description,
-             ShoeCount=shoeModel.ShoeCount
+             ShoeCount=shoeModel.ShoeCount,
+             ImagePath=shoeModel.ImagePath
             
             };
             context.Shoes.Add(shoe);

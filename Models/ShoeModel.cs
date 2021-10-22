@@ -12,5 +12,7 @@ namespace Shoe.Api.Models
         public string Colour { get; set; }
         public string Description { get; set; }
         public int ShoeCount { get; set; }
+        public string ImagePath { get; set; }
+
     }
 }

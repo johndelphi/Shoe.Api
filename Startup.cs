@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Shoe.Api
 {
@@ -36,7 +38,17 @@ namespace Shoe.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Shoe.Api", Version = "v1" });
             });
-            //services.AddTransient<IShoeRepository, ShoeRepository>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("shoespolicy",
+                    builder =>
+                    {
+                        builder.WithOrigins("*")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,13 +64,24 @@ namespace Shoe.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("shoespolicy");
+
 
             app.UseAuthorization();
 
+          
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    //serving images from photos
+            //    FileProvider = new PhysicalFileProvider(
+            //        Path.Combine(Directory.GetCurrentDirectory(), "photos")),
+            //    RequestPath = "/photos"
+            //});
         }
     }
 }

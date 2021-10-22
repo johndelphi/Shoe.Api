@@ -8,6 +8,7 @@ namespace Shoe.Api.Data
     public class Shoes
     {
         public int Id { get; set; }
+        public string ImagePath { get; set; }
         public string Name { get; set; }
         public string Colour { get; set; }
         public string Description { get; set; }
